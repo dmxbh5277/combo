@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>COMBO KM - Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;min-height:100%;font-family:'Google Sans',Arial,Helvetica,sans-serif;background:#edf2f7;color:#172033}
@@ -35,26 +33,25 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="header-row"><div><div class="header-title">COMBO KM - ĐGD</div><div class="header-subtitle">Dồn ngân sách khuyến mãi để tư vấn bán thêm</div></div><div class="header-icon">💰</div></div></header>
+<header class="header"><div class="header-row"><div><div class="header-title">COMBO KM - ĐGD</div><div class="header-subtitle">Dồn toàn bộ KM nhu cầu ban đầu để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
 <main class="content">
 <div class="top-dashboard">
-<div class="discount-card"><div class="discount-label">KM SP CHÍNH</div><input id="mainRate" class="discount-input" type="text" inputmode="decimal" value="6.8%" oninput="mainRateInput(this)"></div>
+<div class="discount-card"><div class="discount-label">KM SP CHÍNH</div><input id="mainRate" class="discount-input" type="text" inputmode="decimal" value="10%" oninput="mainRateInput(this)"></div>
 <div class="summary-card"><div class="summary-label">TỔNG TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
 <div class="summary-card after"><div class="summary-label">TỔNG SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
 </div>
-<div class="budget-card"><div><div class="budget-label">NGÂN SÁCH KM CÒN LẠI</div><div class="budget-sub">Tiền KM còn lại để hỗ trợ SP tiếp theo</div></div><div id="budgetNumber" class="budget-number">0</div></div>
+<div class="budget-card"><div><div class="budget-label">NGÂN SÁCH KM NỘI BỘ</div><div class="budget-sub">Tổng KM của các SP nhu cầu ban đầu</div></div><div id="budgetNumber" class="budget-number">0</div></div>
 <div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
-<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Nếu giá SP cao hơn mức không bù</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
+<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
 <div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">4 SP</div></div>
 <div class="product-list">
-<div class="product-row main"><div class="product-number">SP1</div><div class="price-area"><div class="price-label">GIÁ SP CHÍNH</div><div class="price-line"><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate1" class="rate-input" type="text" inputmode="decimal" value="6.8%" oninput="formatRate(this);syncMainRate();calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP2</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate2" class="rate-input" type="text" inputmode="decimal" value="18%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP3</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate3" class="rate-input" type="text" inputmode="decimal" value="18%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP4</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate4" class="rate-input" type="text" inputmode="decimal" value="18%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row main"><div class="product-number">SP1</div><div class="price-area"><div class="price-label">GIÁ SP CHÍNH</div><div class="price-line"><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate1" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);syncMainRate();calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP2</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate2" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP3</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate3" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP4</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate4" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
 </div>
 <button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
 </main></div>
-
 <script>
 function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0}
 function getRate(id){const e=document.getElementById(id);if(!e)return 0;let v=e.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');let r=parseFloat(v);if(isNaN(r))return 0;return Math.max(0,Math.min(r,99.99))/100}
@@ -66,40 +63,65 @@ function syncMainRate(){document.getElementById('mainRate').value=document.getEl
 function mainRateInput(input){let v=input.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');input.value=v?v+'%':'';document.getElementById('rate1').value=input.value;calculate()}
 
 /*
-CÔNG THỨC:
-- Ngân sách ban đầu = SP1 × KM SP1.
-- Với từng SP tiếp theo, số tiền khách thực trả = Giá × (1 - KM).
-- Ngân sách còn lại = ngân sách trước - số tiền khách thực trả.
-- Giá SP tiếp theo không bù = ngân sách còn lại / (1 - KM SP tiếp theo).
-- Nếu ngân sách âm, khách cần bù = trị tuyệt đối ngân sách âm.
+MÔ HÌNH A:
+- Các SP đã nhập là NHU CẦU BAN ĐẦU.
+- Ngân sách tư vấn SP kế tiếp = tổng tiền KM của TẤT CẢ SP đã nhập.
+- Không trừ tiền khách trả của SP2/SP3 khỏi ngân sách.
+- Khi nhập thêm một SP, KM của SP đó trở thành một phần ngân sách
+  để tư vấn SP kế tiếp.
 */
-function calculate(){
-  const sp1=getNumber('sp1'),rate1=getRate('rate1');
-  let budget=sp1*rate1,totalBefore=sp1,totalDiscount=budget,lastProduct=sp1>0?1:0;
 
-  for(let i=2;i<=4;i++){
-    const price=getNumber('sp'+i);if(price<=0)continue;
-    const rate=getRate('rate'+i),discount=price*rate,customerPay=price-discount;
-    totalBefore+=price;totalDiscount+=discount;budget-=customerPay;lastProduct=i;
+function calculate(){
+  const prices=[],rates=[],discounts=[];
+  for(let i=1;i<=4;i++){
+    prices[i]=getNumber('sp'+i);
+    rates[i]=getRate('rate'+i);
+    discounts[i]=prices[i]*rates[i];
   }
 
+  let lastProduct=0,totalBefore=0,totalDiscount=0;
+  for(let i=1;i<=4;i++){
+    if(prices[i]>0){
+      lastProduct=i;
+      totalBefore+=prices[i];
+      totalDiscount+=discounts[i];
+    }
+  }
+
+  const totalAfter=totalBefore-totalDiscount;
   document.getElementById('beforeTotal').innerText=formatMoney(roundUp1000(totalBefore));
-  document.getElementById('afterTotal').innerText=formatMoney(roundUp1000(totalBefore-totalDiscount));
+  document.getElementById('afterTotal').innerText=formatMoney(roundUp1000(totalAfter));
 
-  const remaining=Math.max(0,budget);
-  document.getElementById('budgetNumber').innerText=formatMoney(roundUp1000(remaining));
+  /* Toàn bộ KM của nhu cầu ban đầu */
+  const budget=totalDiscount;
+  document.getElementById('budgetNumber').innerText=formatMoney(roundUp1000(budget));
 
+  /* Giá SP tiếp theo không cần bù */
   let nextPrice=0;
-  if(lastProduct>=1&&lastProduct<4&&remaining>0){
-    const nextRate=getRate('rate'+(lastProduct+1));
-    if(nextRate<1)nextPrice=remaining/(1-nextRate);
+  if(lastProduct>=1 && lastProduct<4 && budget>0){
+    const nextRate=rates[lastProduct+1];
+    if(nextRate<1) nextPrice=budget/(1-nextRate);
   }
   document.getElementById('nextPrice').innerText=formatMoney(roundUp1000(nextPrice));
 
-  const extra=roundUp1000(Math.max(0,-budget));
-  document.getElementById('customerPay').innerText=formatMoney(extra);
+  /*
+  Nếu có SP2/SP3/SP4 đã nhập:
+  SP cuối cùng được coi là SP đang tư vấn thêm.
+  Ngân sách dành cho nó = KM của các SP trước nó.
+  */
+  let extra=0;
+  if(lastProduct>=2){
+    let supportBudget=0;
+    for(let i=1;i<lastProduct;i++) supportBudget+=discounts[i];
+
+    const candidatePay=prices[lastProduct]*(1-rates[lastProduct]);
+    extra=Math.max(0,candidatePay-supportBudget);
+  }
+
+  document.getElementById('customerPay').innerText=formatMoney(roundUp1000(extra));
   document.getElementById('payCard').classList.toggle('zero',extra===0);
 }
+
 function resetAll(){
   for(let i=1;i<=4;i++)document.getElementById('sp'+i).value='';
   document.getElementById('mainRate').value='10%';
