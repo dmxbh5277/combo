@@ -33,24 +33,24 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="header-row"><div><div class="header-title">COMBO KM - ĐGD</div><div class="header-subtitle">Dồn toàn bộ KM nhu cầu ban đầu để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
+<header class="header"><div class="header-row"><div><div class="header-title">COMBO CE - MLN - ĐGD</div><div class="header-subtitle">Từ nhu cầu ban đầu, tận dụng khuyến mãi để tư vấn thêm sản phẩm bán kèm</div></div><div class="header-icon">💰</div></div></header>
 <main class="content">
 <div class="top-dashboard">
 <div class="discount-card"><div class="discount-label">KM SP CHÍNH</div><input id="mainRate" class="discount-input" type="text" inputmode="decimal" value="10%" oninput="mainRateInput(this)"></div>
-<div class="summary-card"><div class="summary-label">TỔNG TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
-<div class="summary-card after"><div class="summary-label">TỔNG SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
+<div class="summary-card"><div class="summary-label">TỔNG GIÁ TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
+<div class="summary-card after"><div class="summary-label">TỔNG GIÁ SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
 </div>
 <div class="budget-card"><div><div class="budget-label">NGÂN SÁCH KM NỘI BỘ</div><div class="budget-sub">Tổng KM của các SP nhu cầu ban đầu</div></div><div id="budgetNumber" class="budget-number">0</div></div>
-<div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
-<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
+<div class="result-card"><div><div class="result-small"></div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ TIỀN</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
+<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH MUA VỚI GIÁ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù tiền</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
 <div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">4 SP</div></div>
 <div class="product-list">
 <div class="product-row main"><div class="product-number">SP1</div><div class="price-area"><div class="price-label">GIÁ SP CHÍNH</div><div class="price-line"><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate1" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);syncMainRate();calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP2</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate2" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP3</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate3" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP4</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM</div><div class="price-line"><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate4" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP2</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate2" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP3</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate3" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row"><div class="product-number">SP4</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate4" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
 </div>
-<button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
+<button class="reset-btn" onclick="resetAll()">↻ &nbsp; RESET ALL</button>
 </main></div>
 <script>
 function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0}
