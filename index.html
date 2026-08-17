@@ -33,24 +33,111 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="header-row"><div><div class="header-title">COMBO CE - MLN - ĐGD</div><div class="header-subtitle">Từ nhu cầu ban đầu, tận dụng khuyến mãi để tư vấn thêm sản phẩm bán kèm</div></div><div class="header-icon">💰</div></div></header>
+<header class="header"><div class="header-row"><div><div class="header-title">COMBO KM - ĐGD</div><div class="header-subtitle">Dồn toàn bộ KM nhu cầu ban đầu để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
 <main class="content">
 <div class="top-dashboard">
-<div class="discount-card"><div class="discount-label">KM SP CHÍNH</div><input id="mainRate" class="discount-input" type="text" inputmode="decimal" value="10%" oninput="mainRateInput(this)"></div>
-<div class="summary-card"><div class="summary-label">TỔNG GIÁ TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
-<div class="summary-card after"><div class="summary-label">TỔNG GIÁ SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
+<div class="discount-card">
+  <div class="discount-label">KM SP CHÍNH</div>
+  <select id="mainRate" class="discount-input" onchange="mainRateChange(this)">
+    <option value="5%">5%</option>
+    <option value="10%" selected>10%</option>
+    <option value="15%">15%</option>
+  </select>
+</div>
+<div class="summary-card"><div class="summary-label">TỔNG TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
+<div class="summary-card after"><div class="summary-label">TỔNG SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
 </div>
 <div class="budget-card"><div><div class="budget-label">NGÂN SÁCH KM NỘI BỘ</div><div class="budget-sub">Tổng KM của các SP nhu cầu ban đầu</div></div><div id="budgetNumber" class="budget-number">0</div></div>
-<div class="result-card"><div><div class="result-small"></div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ TIỀN</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
-<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH MUA VỚI GIÁ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù tiền</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
-<div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">4 SP</div></div>
+<div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
+<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
+<div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">6 SP</div></div>
 <div class="product-list">
-<div class="product-row main"><div class="product-number">SP1</div><div class="price-area"><div class="price-label">GIÁ SP CHÍNH</div><div class="price-line"><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate1" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);syncMainRate();calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP2</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate2" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP3</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate3" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
-<div class="product-row"><div class="product-number">SP4</div><div class="price-area"><div class="price-label">GIÁ SẢN PHẨM TƯ VẤN KÈM</div><div class="price-line"><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><input id="rate4" class="rate-input" type="text" inputmode="decimal" value="10%" oninput="formatRate(this);calculate()"></div></div></div>
+<div class="product-row main">
+  <div class="product-number">SP1</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SP CHÍNH</div>
+    <div class="price-line">
+      <input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate1" class="rate-input" onchange="syncMainRate();calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
 </div>
-<button class="reset-btn" onclick="resetAll()">↻ &nbsp; RESET ALL</button>
+<div class="product-row">
+  <div class="product-number">SP2</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-line">
+      <input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate2" class="rate-input" onchange="calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="product-row">
+  <div class="product-number">SP3</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-line">
+      <input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate3" class="rate-input" onchange="calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="product-row">
+  <div class="product-number">SP4</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-line">
+      <input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate4" class="rate-input" onchange="calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="product-row">
+  <div class="product-number">SP5</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-line">
+      <input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate5" class="rate-input" onchange="calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="product-row">
+  <div class="product-number">SP6</div>
+  <div class="price-area">
+    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-line">
+      <input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+      <select id="rate6" class="rate-input" onchange="calculate()">
+        <option value="5%">5%</option>
+        <option value="10%" selected>10%</option>
+        <option value="15%">15%</option>
+      </select>
+    </div>
+  </div>
+</div>
+</div>
+<button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
 </main></div>
 <script>
 function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0}
@@ -58,9 +145,8 @@ function getRate(id){const e=document.getElementById(id);if(!e)return 0;let v=e.
 function formatMoney(n){return Math.round(n).toLocaleString('en-US')}
 function roundUp1000(n){return n<=0?0:Math.ceil(n/1000)*1000}
 function formatInput(input){let v=input.value.replace(/\D/g,'');input.value=v?Number(v).toLocaleString('en-US'):''}
-function formatRate(input){let v=input.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');input.value=v?v+'%':''}
 function syncMainRate(){document.getElementById('mainRate').value=document.getElementById('rate1').value}
-function mainRateInput(input){let v=input.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');input.value=v?v+'%':'';document.getElementById('rate1').value=input.value;calculate()}
+function mainRateChange(select){document.getElementById('rate1').value=select.value;calculate()}
 
 /*
 MÔ HÌNH A:
@@ -73,14 +159,14 @@ MÔ HÌNH A:
 
 function calculate(){
   const prices=[],rates=[],discounts=[];
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=6;i++){
     prices[i]=getNumber('sp'+i);
     rates[i]=getRate('rate'+i);
     discounts[i]=prices[i]*rates[i];
   }
 
   let lastProduct=0,totalBefore=0,totalDiscount=0;
-  for(let i=1;i<=4;i++){
+  for(let i=1;i<=6;i++){
     if(prices[i]>0){
       lastProduct=i;
       totalBefore+=prices[i];
@@ -98,14 +184,14 @@ function calculate(){
 
   /* Giá SP tiếp theo không cần bù */
   let nextPrice=0;
-  if(lastProduct>=1 && lastProduct<4 && budget>0){
+  if(lastProduct>=1 && lastProduct<6 && budget>0){
     const nextRate=rates[lastProduct+1];
     if(nextRate<1) nextPrice=budget/(1-nextRate);
   }
   document.getElementById('nextPrice').innerText=formatMoney(roundUp1000(nextPrice));
 
   /*
-  Nếu có SP2/SP3/SP4 đã nhập:
+  Nếu có SP2/SP3/SP4/... đã nhập:
   SP cuối cùng được coi là SP đang tư vấn thêm.
   Ngân sách dành cho nó = KM của các SP trước nó.
   */
@@ -123,12 +209,9 @@ function calculate(){
 }
 
 function resetAll(){
-  for(let i=1;i<=4;i++)document.getElementById('sp'+i).value='';
+  for(let i=1;i<=6;i++)document.getElementById('sp'+i).value='';
   document.getElementById('mainRate').value='10%';
-  document.getElementById('rate1').value='10%';
-  document.getElementById('rate2').value='10%';
-  document.getElementById('rate3').value='10%';
-  document.getElementById('rate4').value='10%';
+  for(let i=1;i<=6;i++)document.getElementById('rate'+i).value='10%';
   calculate();
 }
 calculate();
