@@ -55,7 +55,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row main">
   <div class="product-number">SP1</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SP CHÍNH</div>
+    <div class="price-label">GIÁ SP CHÍNH (VD: 2590 = 2,590,000)</div>
     <div class="price-line">
       <input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
       <select id="rate1" class="rate-input" onchange="syncMainRate();calculate()">
@@ -140,7 +140,8 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
 </main></div>
 <script>
-function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0}
+// Đã thêm * 1000 vào hàm getNumber để tự động nhân 1000 cho mọi giá trị người dùng nhập vào
+function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return (Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0) * 1000}
 function getRate(id){const e=document.getElementById(id);if(!e)return 0;let v=e.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');let r=parseFloat(v);if(isNaN(r))return 0;return Math.max(0,Math.min(r,99.99))/100}
 function formatMoney(n){return Math.round(n).toLocaleString('en-US')}
 function roundUp1000(n){return n<=0?0:Math.ceil(n/1000)*1000}
