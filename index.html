@@ -49,23 +49,23 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="header-row"><div><div class="header-title">COMBO KM - ĐGD</div><div class="header-subtitle">Dồn toàn bộ KM nhu cầu ban đầu để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
+<header class="header"><div class="header-row"><div><div class="header-title">TƯ VẤN COMBO</div><div class="header-subtitle">Sử dụng khuyến mãi Combo để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
 <main class="content">
 <div class="top-dashboard">
 <div class="discount-card">
-  <div class="discount-label">KM SP CHÍNH</div>
+  <div class="discount-label">MỨC GIẢM CHUNG</div>
   <select id="mainRate" class="discount-input" onchange="mainRateChange(this)">
     <option value="5%">5%</option>
     <option value="10%" selected>10%</option>
     <option value="15%">15%</option>
   </select>
 </div>
-<div class="summary-card"><div class="summary-label">TỔNG TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
-<div class="summary-card after"><div class="summary-label">TỔNG SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
+<div class="summary-card"><div class="summary-label">TỔNG GIÁ TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
+<div class="summary-card after"><div class="summary-label">TỔNG GIÁ SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
 </div>
-<div class="budget-card"><div><div class="budget-label">NGÂN SÁCH KM NỘI BỘ</div><div class="budget-sub">Tổng KM của các SP nhu cầu ban đầu</div></div><div id="budgetNumber" class="budget-number">0</div></div>
+<div class="budget-card"><div><div class="budget-label">SỐ TIỀN GIẢM TỔNG</div><div class="budget-sub">Tổng số tiền giảm của Đơn Hàng</div></div><div id="budgetNumber" class="budget-number">0</div></div>
 <div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
-<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Nếu SP tư vấn thêm cao hơn mức không bù</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
+<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Khách lấy thêm sản phẩm tiếp theo với Giá này</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
 <div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">6 SP</div></div>
 <div class="product-list">
 
@@ -90,7 +90,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row">
   <div class="product-number">SP2</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
@@ -107,7 +107,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row">
   <div class="product-number">SP3</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
@@ -124,7 +124,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row">
   <div class="product-number">SP4</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
@@ -141,7 +141,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row">
   <div class="product-number">SP5</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
@@ -158,7 +158,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="product-row">
   <div class="product-number">SP6</div>
   <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM</div>
+    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
