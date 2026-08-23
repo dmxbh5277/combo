@@ -26,11 +26,15 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 .product-number{height:38px;width:40px;border-radius:10px;background:#edf2f7;display:flex;align-items:center;justify-content:center;color:#657386;font-size:11px;font-weight:900}.product-row.main .product-number{background:#e3f3ff;color:#0876a8}
 .price-area{min-width:0}.price-label{font-size:8px;color:#8a95a4;margin-bottom:3px;font-weight:700}.price-line{display:grid;grid-template-columns:1fr 72px;gap:5px;align-items:center}
 
-/* CSS Đã cập nhật cho ô nhập liệu tự động hiển thị x1000 */
 .input-wrapper{display:flex;align-items:center;width:100%;height:37px;border:1.5px solid #d7dee7;border-radius:9px;background:#f8fafc;cursor:text}
 .input-wrapper:focus-within{border-color:#0876a8;background:#fff}
-.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 8px;color:#172033;font-size:14px;font-weight:800}
-.input-wrapper.has-value .price-input{padding-right:0}
+.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 4px 0 8px;color:#172033;font-size:14px;font-weight:800}
+
+/* CSS cho nút xóa x */
+.clear-btn{display:none;background:none;border:none;color:#94a3b8;font-size:15px;font-weight:900;cursor:pointer;padding:0 4px;line-height:1}
+.clear-btn:hover{color:#ef4444}
+.input-wrapper.has-value .clear-btn{display:block}
+
 .input-suffix{padding-right:8px;color:#172033;font-size:14px;font-weight:800;display:none;pointer-events:none}
 .input-wrapper.has-value .input-suffix{display:block}
 
@@ -74,12 +78,12 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
   <div class="price-area">
     <div class="price-label">GIÁ SP CHÍNH</div>
     <div class="price-line">
-      <!-- Cấu trúc HTML mới cho ô nhập -->
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate1" class="rate-input" onchange="syncMainRate();calculate()">
+      <select id="rate1" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -94,9 +98,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate2" class="rate-input" onchange="calculate()">
+      <select id="rate2" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -111,9 +116,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate3" class="rate-input" onchange="calculate()">
+      <select id="rate3" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -128,9 +134,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate4" class="rate-input" onchange="calculate()">
+      <select id="rate4" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -145,9 +152,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate5" class="rate-input" onchange="calculate()">
+      <select id="rate5" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -162,9 +170,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
         <input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()">
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button>
         <span class="input-suffix">,000</span>
       </div>
-      <select id="rate6" class="rate-input" onchange="calculate()">
+      <select id="rate6" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
         <option value="10%" selected>10%</option>
         <option value="15%">15%</option>
@@ -177,29 +186,57 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
 </main></div>
 <script>
-// Logic nhân ngầm x1000 cho mọi toán tử như cũ
 function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return (Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0) * 1000}
 function getRate(id){const e=document.getElementById(id);if(!e)return 0;let v=e.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');let r=parseFloat(v);if(isNaN(r))return 0;return Math.max(0,Math.min(r,99.99))/100}
 function formatMoney(n){return Math.round(n).toLocaleString('en-US')}
 function roundUp1000(n){return n<=0?0:Math.ceil(n/1000)*1000}
 
-// Hàm format input đã được làm mới để tương tác với thẻ Span chứa chữ ",000"
 function formatInput(input){
-  let v = input.value.replace(/\D/g, ''); // chỉ lấy số
+  let v = input.value.replace(/\D/g, '');
   let wrapper = input.closest('.input-wrapper');
   
   if(v !== '') {
-    v = Number(v).toString(); // tự động xóa các số 0 thừa ở đầu
-    input.value = Number(v).toLocaleString('en-US'); // phẩy nghìn
-    if(wrapper) wrapper.classList.add('has-value'); // hiện đuôi ,000
+    v = Number(v).toString();
+    input.value = Number(v).toLocaleString('en-US');
+    if(wrapper) wrapper.classList.add('has-value');
   } else {
     input.value = '';
-    if(wrapper) wrapper.classList.remove('has-value'); // ẩn đuôi ,000 nếu xoá rỗng
+    if(wrapper) wrapper.classList.remove('has-value');
   }
 }
 
-function syncMainRate(){document.getElementById('mainRate').value=document.getElementById('rate1').value}
-function mainRateChange(select){document.getElementById('rate1').value=select.value;calculate()}
+// Hàm xử lý khi bấm nút x để xóa nhanh
+function clearInput(event, btn){
+  event.stopPropagation(); // Tránh kích hoạt sự kiện click của wrapper
+  let wrapper = btn.closest('.input-wrapper');
+  let input = wrapper.querySelector('input');
+  if(input){
+    input.value = '';
+    wrapper.classList.remove('has-value');
+    calculate();
+    input.focus();
+  }
+}
+
+function mainRateChange(select){
+  const val = select.value;
+  for(let i = 1; i <= 6; i++){
+    let r = document.getElementById('rate' + i);
+    if(r) r.value = val;
+  }
+  calculate();
+}
+
+function productRateChange(select){
+  const val = select.value;
+  const main = document.getElementById('mainRate');
+  if(main) main.value = val;
+  for(let i = 1; i <= 6; i++){
+    let r = document.getElementById('rate' + i);
+    if(r) r.value = val;
+  }
+  calculate();
+}
 
 function calculate(){
   const prices=[],rates=[],discounts=[];
@@ -251,11 +288,11 @@ function resetAll(){
     if(input) {
       input.value='';
       let wrapper = input.closest('.input-wrapper');
-      if(wrapper) wrapper.classList.remove('has-value'); // tắt đuôi ,000 đi
+      if(wrapper) wrapper.classList.remove('has-value');
     }
   }
   document.getElementById('mainRate').value='10%';
-  for(let i=1;i<=6;i++)document.getElementById('rate'+i).value='10%';
+  for(let i=1;i<=6;i++) document.getElementById('rate'+i).value='10%';
   calculate();
 }
 calculate();
