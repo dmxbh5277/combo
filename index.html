@@ -23,7 +23,6 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 .pay-label{color:#b85a00;font-size:9px;font-weight:900}.pay-card.zero .pay-label{color:#0b9b55}.pay-sub{margin-top:3px;color:#8d7662;font-size:8px}.pay-number{color:#e96b00;font-size:25px;font-weight:900;white-space:nowrap}.pay-card.zero .pay-number{color:#0b9b55}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 6px}.section-title-main{font-size:14px;font-weight:900}.section-badge{background:#e4f3ff;color:#0876b5;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
 
-/* Tinh chỉnh phần danh sách sản phẩm và khoảng cách các hàng */
 .product-list{display:flex;flex-direction:column;gap:8px}
 .product-row{background:#fff;border-radius:14px;display:grid;grid-template-columns:46px 1fr;gap:10px;align-items:center;padding:9px 11px;border:1.5px solid #e2e8f0;box-shadow:0 2px 8px rgba(30,50,80,.04)}
 .product-row.main{border:1.5px solid #0876a8;box-shadow:0 3px 10px rgba(8,118,168,.08)}
@@ -42,7 +41,9 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 .clear-btn:hover{color:#ef4444}
 .input-wrapper.has-value .clear-btn{display:block}
 
-.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 0 0 8px;color:#1e293b;font-size:14px;font-weight:800}
+/* Tinh chỉnh padding cho ô nhập giá để số không bị sát viền */
+.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 10px 0 8px;color:#1e293b;font-size:14px;font-weight:800}
+.input-wrapper.has-value .price-input{padding:0 0 0 8px;}
 .input-suffix{padding-right:10px;color:#1e293b;font-size:14px;font-weight:800;display:none;pointer-events:none}
 .input-wrapper.has-value .input-suffix{display:block}
 
@@ -88,7 +89,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SP CHÍNH</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate1" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
@@ -104,7 +105,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate2" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
@@ -120,7 +121,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate3" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
@@ -136,7 +137,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate4" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
@@ -152,7 +153,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate5" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
@@ -168,7 +169,7 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
     <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
     <div class="price-line">
       <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="0" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
       </div>
       <select id="rate6" class="rate-input" onchange="productRateChange(this);calculate()">
         <option value="5%">5%</option>
