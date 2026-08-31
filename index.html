@@ -21,7 +21,10 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 .result-small{font-size:9px;opacity:.82;font-weight:800;letter-spacing:.4px}.result-title{margin-top:4px;font-size:13px;font-weight:900;line-height:1.2}.result-number{color:#fff200;font-size:32px;line-height:1;font-weight:900;white-space:nowrap}.result-unit{margin-left:2px;font-size:10px;opacity:.8}
 .pay-card{min-height:68px;background:linear-gradient(135deg,#fff3e7,#fff);border:1px solid #ffd4ae;border-radius:14px;padding:8px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;margin-bottom:8px}.pay-card.zero{background:linear-gradient(135deg,#e9fff3,#fff);border-color:#bcebd0}
 .pay-label{color:#b85a00;font-size:9px;font-weight:900}.pay-card.zero .pay-label{color:#0b9b55}.pay-sub{margin-top:3px;color:#8d7662;font-size:8px}.pay-number{color:#e96b00;font-size:25px;font-weight:900;white-space:nowrap}.pay-card.zero .pay-number{color:#0b9b55}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 6px}.section-title-main{font-size:14px;font-weight:900}.section-badge{background:#e4f3ff;color:#0876b5;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 6px}
+.section-title-main{font-size:14px;font-weight:900;display:flex;align-items:center;gap:8px}
+.combo-checkbox-label{font-size:10px;font-weight:800;color:#0876b5;background:#e4f3ff;padding:3px 8px;border-radius:12px;display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none}
+.section-badge{background:#e4f3ff;color:#0876b5;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
 
 /* Tinh chỉnh tối ưu không gian danh sách sản phẩm và các ô nhập liệu cho Smartphone */
 .product-list{display:flex;flex-direction:column;gap:8px}
@@ -81,7 +84,17 @@ body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:a
 <div class="budget-card"><div><div class="budget-label">SỐ TIỀN GIẢM TỔNG</div><div class="budget-sub">Tổng số tiền giảm của Đơn Hàng</div></div><div id="budgetNumber" class="budget-number">0</div></div>
 <div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
 <div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Khách lấy thêm sản phẩm tiếp theo với Giá này</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
-<div class="section-title"><div class="section-title-main">Sản phẩm</div><div class="section-badge">6 SP</div></div>
+
+<div class="section-title">
+  <div class="section-title-main">
+    <span>Sản phẩm</span>
+    <label class="combo-checkbox-label">
+      <input type="checkbox" id="comboChung" checked onchange="toggleComboChung(this)" style="cursor:pointer; width:12px; height:12px; accent-color:#0876b5;"> COMBO Chung
+    </label>
+  </div>
+  <div class="section-badge">6 SP</div>
+</div>
+
 <div class="product-list">
 
 <div class="product-row main">
@@ -222,22 +235,39 @@ function clearInput(event, btn){
   }
 }
 
+function toggleComboChung(checkbox){
+  if(checkbox.checked){
+    const val = document.getElementById('mainRate').value;
+    for(let i = 1; i <= 6; i++){
+      let r = document.getElementById('rate' + i);
+      if(r) r.value = val;
+    }
+    calculate();
+  }
+}
+
 function mainRateChange(select){
   const val = select.value;
-  for(let i = 1; i <= 6; i++){
-    let r = document.getElementById('rate' + i);
-    if(r) r.value = val;
+  const isComboChung = document.getElementById('comboChung').checked;
+  if(isComboChung){
+    for(let i = 1; i <= 6; i++){
+      let r = document.getElementById('rate' + i);
+      if(r) r.value = val;
+    }
   }
   calculate();
 }
 
 function productRateChange(select){
-  const val = select.value;
-  const main = document.getElementById('mainRate');
-  if(main) main.value = val;
-  for(let i = 1; i <= 6; i++){
-    let r = document.getElementById('rate' + i);
-    if(r) r.value = val;
+  const isComboChung = document.getElementById('comboChung').checked;
+  if(isComboChung){
+    const val = select.value;
+    const main = document.getElementById('mainRate');
+    if(main) main.value = val;
+    for(let i = 1; i <= 6; i++){
+      let r = document.getElementById('rate' + i);
+      if(r) r.value = val;
+    }
   }
   calculate();
 }
@@ -296,6 +326,7 @@ function resetAll(){
     }
   }
   document.getElementById('mainRate').value='10%';
+  document.getElementById('comboChung').checked = true;
   for(let i=1;i<=6;i++) document.getElementById('rate'+i).value='10%';
   calculate();
 }
