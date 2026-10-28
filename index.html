@@ -2,207 +2,378 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0b2150">
 <title>COMBO KM - Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#eef2fa;
+  --ink:#0f1b33;
+  --muted:#6b7a93;
+  --line:#e1e7f2;
+  --card:#ffffff;
+  --navy:#0b2150;
+  --blue:#2563ff;
+  --cyan:#14c4d8;
+  --gold:#ffd23f;
+  --orange:#ff7a1a;
+  --green:#12c27e;
+  --red:#ef3d4d;
+  --radius:18px;
+  --shadow:0 6px 20px rgba(21,40,90,.08);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{width:100%;min-height:100%;font-family:'Google Sans',Arial,Helvetica,sans-serif;background:#edf2f7;color:#172033}
-body{overflow-x:hidden}.app{width:100%;max-width:600px;min-height:100vh;margin:auto;background:#edf2f7}
-.header{background:linear-gradient(135deg,#063b66,#0876a8);color:#fff;padding:12px 14px;border-radius:0 0 17px 17px;box-shadow:0 4px 12px rgba(0,0,0,.13)}
-.header-row{display:flex;justify-content:space-between;align-items:center}.header-title{font-size:20px;font-weight:900}.header-subtitle{margin-top:3px;font-size:10px;opacity:.82}.header-icon{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:19px}
-.content{padding:8px 10px 14px}.top-dashboard{display:grid;grid-template-columns:96px 1fr 1fr;gap:6px;margin-bottom:8px}
-.discount-card,.summary-card{min-height:78px;background:#fff;border-radius:13px;padding:8px;box-shadow:0 2px 8px rgba(30,50,80,.07);display:flex;flex-direction:column;justify-content:center}.discount-card{align-items:center}
-.discount-label,.summary-label{font-size:9px;color:#657386;font-weight:800}.discount-input{width:76px;height:37px;margin-top:5px;border:2px solid #16a05d;border-radius:9px;text-align:center;outline:none;color:#087a48;background:#f6fff9;font-size:16px;font-weight:900}
-.summary-card.after{background:linear-gradient(135deg,#fff5f5,#fff);border:1px solid #ffdada}.summary-value{margin-top:6px;font-size:17px;font-weight:900;white-space:nowrap}.summary-after{color:#ed2929}
-.budget-card{min-height:70px;background:linear-gradient(135deg,#e9fff3,#fff);border:1px solid #bcebd0;border-radius:14px;padding:8px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;margin-bottom:8px}
-.budget-label{color:#168653;font-size:9px;font-weight:900}.budget-sub{margin-top:3px;color:#718078;font-size:8px}.budget-number{color:#0b9b55;font-size:25px;font-weight:900;white-space:nowrap}
-.result-card{min-height:88px;background:linear-gradient(135deg,#073b68,#075f8d);border-radius:15px;padding:11px 13px;color:#fff;display:grid;grid-template-columns:1fr auto;align-items:center;box-shadow:0 4px 13px rgba(4,63,105,.18);margin-bottom:8px}
-.result-small{font-size:9px;opacity:.82;font-weight:800;letter-spacing:.4px}.result-title{margin-top:4px;font-size:13px;font-weight:900;line-height:1.2}.result-number{color:#fff200;font-size:32px;line-height:1;font-weight:900;white-space:nowrap}.result-unit{margin-left:2px;font-size:10px;opacity:.8}
-.pay-card{min-height:68px;background:linear-gradient(135deg,#fff3e7,#fff);border:1px solid #ffd4ae;border-radius:14px;padding:8px 12px;display:grid;grid-template-columns:1fr auto;align-items:center;margin-bottom:8px}.pay-card.zero{background:linear-gradient(135deg,#e9fff3,#fff);border-color:#bcebd0}
-.pay-label{color:#b85a00;font-size:9px;font-weight:900}.pay-card.zero .pay-label{color:#0b9b55}.pay-sub{margin-top:3px;color:#8d7662;font-size:8px}.pay-number{color:#e96b00;font-size:25px;font-weight:900;white-space:nowrap}.pay-card.zero .pay-number{color:#0b9b55}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 6px}
-.section-title-main{font-size:14px;font-weight:900;display:flex;align-items:center;gap:8px}
-.combo-checkbox-label{font-size:10px;font-weight:800;color:#0876b5;background:#e4f3ff;padding:3px 8px;border-radius:12px;display:flex;align-items:center;gap:4px;cursor:pointer;user-select:none}
-.section-badge{background:#e4f3ff;color:#0876b5;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:900}
+html,body{width:100%;min-height:100%;background:var(--bg);color:var(--ink);font-family:'Be Vietnam Pro','Google Sans',system-ui,-apple-system,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{overflow-x:hidden}
+.app{width:100%;max-width:520px;min-height:100vh;margin:0 auto;background:var(--bg);position:relative;overflow-x:hidden}
+.app *{min-width:0}
 
-/* Tinh chỉnh tối ưu không gian danh sách sản phẩm và các ô nhập liệu cho Smartphone */
-.product-list{display:flex;flex-direction:column;gap:8px}
-.product-row{background:#fff;border-radius:13px;display:grid;grid-template-columns:42px 1fr;gap:8px;align-items:center;padding:8px 10px;border:1.5px solid #e2e8f0;box-shadow:0 2px 8px rgba(30,50,80,.04)}
-.product-row.main{border:1.5px solid #0876a8;box-shadow:0 3px 10px rgba(8,118,168,.08)}
-.product-number{height:38px;width:38px;border-radius:10px;background:#edf2f7;display:flex;align-items:center;justify-content:center;color:#657386;font-size:11px;font-weight:900}
-.product-row.main .product-number{background:#e3f3ff;color:#0876a8}
+/* ===== HERO ===== */
+.hero{position:relative;padding:calc(14px + env(safe-area-inset-top)) 14px 40px;color:#fff;border-radius:0 0 28px 28px;overflow:hidden;
+  background:linear-gradient(145deg,#0a1c47 0%,#123a9c 55%,#1a74e8 100%)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(40px);pointer-events:none}
+.hero::before{width:200px;height:200px;right:-60px;top:-70px;background:rgba(20,196,216,.55);animation:float 9s ease-in-out infinite}
+.hero::after{width:170px;height:170px;left:-60px;bottom:-60px;background:rgba(255,210,63,.28);animation:float 11s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-14px,14px)}}
+.hero>*{position:relative;z-index:1}
+
+.header-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.header-title{font-size:21px;font-weight:900;letter-spacing:.3px;line-height:1.1}
+.header-subtitle{margin-top:4px;font-size:11px;font-weight:500;opacity:.8;line-height:1.35}
+.header-icon{flex:0 0 auto;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);animation:pulse 2.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.35)}50%{box-shadow:0 0 0 9px rgba(255,255,255,0)}}
+
+/* Hero result cards */
+.result-card{margin-top:14px;padding:14px 16px;border-radius:20px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;
+  background:linear-gradient(135deg,rgba(255,255,255,.2),rgba(255,255,255,.08));border:1px solid rgba(255,255,255,.28);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 28px rgba(3,15,50,.28)}
+.result-small{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;letter-spacing:.8px;color:var(--gold)}
+.result-small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.result-title{margin-top:5px;font-size:13px;font-weight:800;line-height:1.3}
+.result-value{text-align:right;white-space:nowrap}
+.result-number{color:var(--gold);font-size:clamp(28px,9vw,38px);line-height:1;font-weight:900;letter-spacing:-.5px;font-variant-numeric:tabular-nums;text-shadow:0 3px 14px rgba(255,210,63,.35);display:inline-block}
+.result-unit{margin-left:3px;font-size:12px;font-weight:700;opacity:.85}
+
+.pay-card{margin-top:10px;padding:12px 16px;border-radius:18px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#ff8a2b,#ff5a1f);box-shadow:0 10px 24px rgba(255,100,30,.4);border:1px solid rgba(255,255,255,.3);
+  transition:background .5s var(--ease),box-shadow .5s var(--ease)}
+.pay-card.zero{background:linear-gradient(135deg,#17d38b,#0aa56a);box-shadow:0 10px 24px rgba(10,165,106,.4)}
+.pay-label{font-size:11px;font-weight:900;letter-spacing:.8px}
+.pay-sub{margin-top:3px;font-size:10px;font-weight:500;opacity:.9;line-height:1.35}
+.pay-value{text-align:right;white-space:nowrap}
+.pay-number{font-size:clamp(23px,7.2vw,30px);font-weight:900;font-variant-numeric:tabular-nums;display:inline-block;letter-spacing:-.3px}
+
+/* ===== CONTENT ===== */
+.content{padding:0 12px calc(22px + env(safe-area-inset-bottom));margin-top:-22px;position:relative;z-index:2}
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(225,231,242,.7)}
+
+/* Summary */
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.summary-card{padding:11px 12px;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.summary-label{font-size:9.5px;font-weight:800;color:var(--muted);letter-spacing:.5px}
+.summary-value{font-size:clamp(15px,4.6vw,18px);font-weight:900;white-space:nowrap;font-variant-numeric:tabular-nums;display:inline-block}
+.summary-card.after{background:linear-gradient(135deg,#fff3f4,#fff);border-color:#ffd9dd}
+.summary-after{color:var(--red)}
+.budget-card{padding:12px 14px;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#e6fbf2,#fff);border-color:#b6ecd3}
+.budget-label{font-size:10.5px;font-weight:900;color:#0c9a63;letter-spacing:.6px}
+.budget-sub{margin-top:3px;font-size:10px;color:#6f8a7d;line-height:1.3}
+.budget-number{font-size:clamp(22px,7vw,28px);font-weight:900;color:#0ba96a;white-space:nowrap;font-variant-numeric:tabular-nums;display:inline-block}
+
+/* Number pop animation (added via JS observer) */
+.pop{animation:pop .45s var(--ease)}
+@keyframes pop{0%{transform:scale(1)}35%{transform:scale(1.12)}100%{transform:scale(1)}}
+
+/* Settings (discount + toggle) */
+.settings{padding:12px;margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch}
+.discount-card{display:flex;flex-direction:column;gap:6px}
+.discount-label{font-size:9.5px;font-weight:800;color:var(--muted);letter-spacing:.5px}
+.select-wrap{position:relative}
+.discount-input,.rate-input{-webkit-appearance:none;-moz-appearance:none;appearance:none;width:100%;outline:none;cursor:pointer;text-align:center;text-align-last:center;
+  font-family:inherit;font-weight:900;color:#0a7d4d;background-color:#ecfdf5;border:2px solid #34d399;border-radius:13px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230a7d4d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;transition:border-color .2s,box-shadow .2s,background-color .2s,transform .15s}
+.discount-input{height:48px;font-size:19px;padding:0 24px 0 8px}
+.discount-input:focus,.rate-input:focus{border-color:var(--blue);background-color:#fff;box-shadow:0 0 0 4px rgba(37,99,255,.14)}
+.discount-input:active,.rate-input:active{transform:scale(.98)}
+
+.combo-checkbox-label{position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:13px;cursor:pointer;user-select:none;-webkit-user-select:none;
+  background:linear-gradient(135deg,#eaf2ff,#f6f9ff);border:1.5px solid #cfe0ff;color:#1747c4;font-size:11px;font-weight:900;letter-spacing:.3px;line-height:1.25;transition:border-color .25s,background .25s}
+.combo-checkbox-label input{position:absolute;opacity:0;width:0;height:0}
+.switch{position:relative;flex:0 0 auto;width:44px;height:26px;border-radius:99px;background:#c5d0e6;transition:background .3s var(--ease)}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(15,27,51,.3);transition:transform .35s var(--ease)}
+.combo-checkbox-label:has(input:checked){border-color:#7aa6ff;background:linear-gradient(135deg,#dce9ff,#eef4ff)}
+.combo-checkbox-label input:checked + .switch{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.combo-checkbox-label input:checked + .switch::after{transform:translateX(18px)}
+.combo-checkbox-label input:focus-visible + .switch{box-shadow:0 0 0 4px rgba(37,99,255,.25)}
+
+/* Section title */
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 4px 9px}
+.section-title-main{font-size:15px;font-weight:900;display:flex;align-items:center;gap:8px}
+.section-title-main::before{content:"";width:4px;height:16px;border-radius:4px;background:linear-gradient(180deg,var(--blue),var(--cyan))}
+.section-badge{background:#e3edff;color:#1747c4;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900}
+
+/* Products */
+.product-list{display:flex;flex-direction:column;gap:9px}
+.product-row{position:relative;padding:11px 12px;display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:var(--radius);background:var(--card);
+  box-shadow:0 3px 12px rgba(21,40,90,.05);transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.product-row.main{border-color:#8fb4ff;background:linear-gradient(135deg,#f3f7ff,#fff);box-shadow:0 6px 18px rgba(37,99,255,.13)}
+.product-row:has(.input-wrapper.has-value){border-color:#9ee3c4}
+.product-row.main:has(.input-wrapper.has-value){border-color:var(--blue)}
+.product-row:focus-within{transform:translateY(-1px);box-shadow:0 8px 22px rgba(37,99,255,.16);border-color:var(--blue)}
+
+.product-number{height:42px;width:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#5b6b86;background:#eaeff8;transition:all .3s var(--ease)}
+.product-row.main .product-number{color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 5px 12px rgba(37,99,255,.35)}
+.product-row:has(.input-wrapper.has-value) .product-number{background:linear-gradient(135deg,#17d38b,#0aa56a);color:#fff}
+.product-row.main:has(.input-wrapper.has-value) .product-number{background:linear-gradient(135deg,var(--blue),var(--cyan))}
 
 .price-area{min-width:0}
-.price-label{font-size:11px;color:#64748b;margin-bottom:3px;font-weight:800;letter-spacing:.3px}
-.price-line{display:grid;grid-template-columns:1fr 68px;gap:6px;align-items:center}
+.price-label{font-size:10px;color:var(--muted);margin-bottom:5px;font-weight:800;letter-spacing:.5px}
+.product-row.main .price-label{color:#1747c4}
+.price-line{display:grid;grid-template-columns:minmax(0,1fr) 76px;gap:8px;align-items:center}
 
-.input-wrapper{display:flex;align-items:center;width:100%;height:36px;border:1.5px solid #cbd5e1;border-radius:9px;background:#f8fafc;cursor:text;min-width:0}
-.input-wrapper:focus-within{border-color:#0876a8;background:#fff;box-shadow:0 0 0 3px rgba(8,118,168,.08)}
-
-/* Nút xóa x */
-.clear-btn{display:none;background:none;border:none;color:#94a3b8;font-size:20px;font-weight:900;cursor:pointer;padding:0 2px 0 6px;line-height:1}
-.clear-btn:hover{color:#ef4444}
-.input-wrapper.has-value .clear-btn{display:block}
-
-.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 6px 0 6px;color:#1e293b;font-size:13px;font-weight:800}
+.input-wrapper{display:flex;align-items:center;width:100%;height:46px;border:2px solid #d3dbea;border-radius:13px;background:#f6f8fc;cursor:text;transition:border-color .2s,background .2s,box-shadow .2s}
+.input-wrapper:focus-within{border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(37,99,255,.14)}
+.clear-btn{display:none;flex:0 0 auto;width:26px;height:26px;margin-left:7px;border:none;border-radius:50%;background:#e3e9f4;color:#7a89a3;font-size:17px;font-weight:900;cursor:pointer;line-height:1;align-items:center;justify-content:center;transition:background .2s,color .2s,transform .15s}
+.clear-btn:hover{background:#ffd9dd;color:var(--red)}
+.clear-btn:active{transform:scale(.88)}
+.input-wrapper.has-value .clear-btn{display:flex;animation:pop .35s var(--ease)}
+.price-input{flex:1;min-width:0;height:100%;border:none;outline:none;background:transparent;text-align:right;padding:0 6px;color:var(--ink);font-family:inherit;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.price-input::placeholder{color:#b4bfd3}
 .input-wrapper.has-value .price-input{padding:0 0 0 6px}
-.input-suffix{padding-right:8px;color:#1e293b;font-size:11px;font-weight:800;display:none;pointer-events:none}
+.input-suffix{padding-right:11px;color:#5b6b86;font-size:13px;font-weight:800;display:none;pointer-events:none}
 .input-wrapper.has-value .input-suffix{display:block}
 
-.rate-input{width:100%;height:36px;border-radius:9px;outline:none;padding:0 4px;font-weight:800;border:1.5px solid #10b981;background:#ecfdf5;color:#047857;text-align:center;font-size:11px;cursor:pointer}
-.rate-input:focus{border-color:#0876a8;background:#fff}
+.rate-input{height:46px;font-size:14px;padding:0 20px 0 6px;background-position:right 7px center}
 
-.reset-btn{width:100%;height:38px;margin-top:8px;border:none;border-radius:11px;background:#fff;color:#526174;font-size:11px;font-weight:900;box-shadow:0 2px 7px rgba(30,50,80,.06);cursor:pointer}
+/* Reset */
+.reset-btn{width:100%;height:50px;margin-top:14px;border:none;border-radius:15px;color:#fff;font-family:inherit;font-size:13px;font-weight:900;letter-spacing:.6px;cursor:pointer;
+  background:linear-gradient(135deg,#1a2f63,#2563ff);box-shadow:0 8px 20px rgba(37,99,255,.35);transition:transform .15s,box-shadow .2s}
+.reset-btn:active{transform:scale(.97);box-shadow:0 4px 10px rgba(37,99,255,.3)}
+.reset-btn .ico{display:inline-block;transition:transform .5s var(--ease)}
+.reset-btn:active .ico{transform:rotate(-360deg)}
 
-@media(max-width:430px){.header-title{font-size:19px}.top-dashboard{grid-template-columns:94px 1fr 1fr}.result-number{font-size:31px}}
+/* Entrance animation */
+.reveal{opacity:0;transform:translateY(16px);animation:reveal .6s var(--ease) forwards}
+@keyframes reveal{to{opacity:1;transform:none}}
+.d1{animation-delay:.05s}.d2{animation-delay:.12s}.d3{animation-delay:.19s}.d4{animation-delay:.26s}.d5{animation-delay:.33s}
+.product-row.reveal:nth-child(1){animation-delay:.34s}.product-row.reveal:nth-child(2){animation-delay:.40s}.product-row.reveal:nth-child(3){animation-delay:.46s}
+.product-row.reveal:nth-child(4){animation-delay:.52s}.product-row.reveal:nth-child(5){animation-delay:.58s}.product-row.reveal:nth-child(6){animation-delay:.64s}
+
 @media(max-width:360px){
-  .content{padding:6px 8px 10px}.top-dashboard{grid-template-columns:86px 1fr 1fr;gap:5px}.summary-value{font-size:15px}.budget-number{font-size:22px}.result-number{font-size:28px}.pay-number{font-size:21px}.product-row{grid-template-columns:38px 1fr;gap:6px;padding:7px 8px}.product-number{width:36px;height:36px}.price-line{grid-template-columns:1fr 64px;gap:5px}
-  .input-wrapper,.rate-input{height:34px}
-  .price-input,.input-suffix{font-size:12px}
-  .rate-input{font-size:10px}
+  .hero{padding-left:11px;padding-right:11px}
+  .content{padding-left:8px;padding-right:8px}
+  .header-title{font-size:19px}
+  .settings{grid-template-columns:1fr;}
+  .product-row{grid-template-columns:36px 1fr;gap:8px;padding:10px 9px}
+  .product-number{width:36px;height:36px;font-size:11px;border-radius:11px}
+  .price-line{grid-template-columns:minmax(0,1fr) 68px;gap:6px}
+  .price-input{font-size:16px}
+  .input-wrapper,.rate-input{height:44px}
+  .rate-input{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 <div class="app">
-<header class="header"><div class="header-row"><div><div class="header-title">TƯ VẤN COMBO</div><div class="header-subtitle">Sử dụng khuyến mãi Combo để tư vấn thêm</div></div><div class="header-icon">💰</div></div></header>
-<main class="content">
-<div class="top-dashboard">
-<div class="discount-card">
-  <div class="discount-label">MỨC GIẢM CHUNG</div>
-  <select id="mainRate" class="discount-input" onchange="mainRateChange(this)">
-    <option value="5%">5%</option>
-    <option value="10%" selected>10%</option>
-    <option value="15%">15%</option>
-    <option value="9%">9%</option>
-  </select>
-</div>
-<div class="summary-card"><div class="summary-label">TỔNG GIÁ TRƯỚC KM</div><div id="beforeTotal" class="summary-value">0</div></div>
-<div class="summary-card after"><div class="summary-label">TỔNG GIÁ SAU KM</div><div id="afterTotal" class="summary-value summary-after">0</div></div>
-</div>
-<div class="budget-card"><div><div class="budget-label">SỐ TIỀN GIẢM TỔNG</div><div class="budget-sub">Tổng số tiền giảm của Đơn Hàng</div></div><div id="budgetNumber" class="budget-number">0</div></div>
-<div class="result-card"><div><div class="result-small">CƠ HỘI BÁN THÊM</div><div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div></div><div><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div></div>
-<div id="payCard" class="pay-card zero"><div><div class="pay-label">KHÁCH CẦN BÙ</div><div class="pay-sub">Khách lấy thêm sản phẩm tiếp theo với Giá này</div></div><div><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div></div>
 
-<div class="section-title">
-  <div class="section-title-main">
-    <span>Sản phẩm</span>
+<header class="hero">
+  <div class="header-row reveal">
+    <div>
+      <div class="header-title">TƯ VẤN COMBO</div>
+      <div class="header-subtitle">Sử dụng khuyến mãi Combo để tư vấn thêm</div>
+    </div>
+    <div class="header-icon">💰</div>
+  </div>
+
+  <div class="result-card reveal d1">
+    <div>
+      <div class="result-small">CƠ HỘI BÁN THÊM</div>
+      <div class="result-title">GIÁ SP TIẾP THEO<br>KHÔNG CẦN BÙ</div>
+    </div>
+    <div class="result-value"><span id="nextPrice" class="result-number">0</span><span class="result-unit">đ</span></div>
+  </div>
+
+  <div id="payCard" class="pay-card zero reveal d2">
+    <div>
+      <div class="pay-label">KHÁCH CẦN BÙ</div>
+      <div class="pay-sub">Khách lấy thêm sản phẩm tiếp theo với Giá này</div>
+    </div>
+    <div class="pay-value"><span id="customerPay" class="pay-number">0</span><span class="result-unit">đ</span></div>
+  </div>
+</header>
+
+<main class="content">
+
+  <div class="summary-grid reveal d2">
+    <div class="card summary-card">
+      <div class="summary-label">TỔNG GIÁ TRƯỚC KM</div>
+      <div id="beforeTotal" class="summary-value">0</div>
+    </div>
+    <div class="card summary-card after">
+      <div class="summary-label">TỔNG GIÁ SAU KM</div>
+      <div id="afterTotal" class="summary-value summary-after">0</div>
+    </div>
+  </div>
+
+  <div class="card budget-card reveal d3">
+    <div>
+      <div class="budget-label">SỐ TIỀN GIẢM TỔNG</div>
+      <div class="budget-sub">Tổng số tiền giảm của Đơn Hàng</div>
+    </div>
+    <div id="budgetNumber" class="budget-number">0</div>
+  </div>
+
+  <div class="card settings reveal d4">
+    <div class="discount-card">
+      <div class="discount-label">MỨC GIẢM CHUNG</div>
+      <div class="select-wrap">
+        <select id="mainRate" class="discount-input" onchange="mainRateChange(this)">
+          <option value="5%">5%</option>
+          <option value="10%" selected>10%</option>
+          <option value="15%">15%</option>
+          <option value="9%">9%</option>
+        </select>
+      </div>
+    </div>
     <label class="combo-checkbox-label">
-      <input type="checkbox" id="comboChung" checked onchange="toggleComboChung(this)" style="cursor:pointer; width:12px; height:12px; accent-color:#0876b5;"> COMBO Chung
+      <span>COMBO<br>Chung</span>
+      <input type="checkbox" id="comboChung" checked onchange="toggleComboChung(this)">
+      <span class="switch"></span>
     </label>
   </div>
-  <div class="section-badge">6 SP</div>
+
+  <div class="section-title reveal d5">
+    <div class="section-title-main"><span>Sản phẩm</span></div>
+    <div class="section-badge">6 SP</div>
+  </div>
+
+  <div class="product-list">
+
+    <div class="product-row main reveal">
+      <div class="product-number">SP1</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SP CHÍNH</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate1" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reveal">
+      <div class="product-number">SP2</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate2" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reveal">
+      <div class="product-number">SP3</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate3" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reveal">
+      <div class="product-number">SP4</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate4" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reveal">
+      <div class="product-number">SP5</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate5" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-row reveal">
+      <div class="product-number">SP6</div>
+      <div class="price-area">
+        <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
+        <div class="price-line">
+          <div class="input-wrapper" onclick="this.querySelector('input').focus()">
+            <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="Nhập giá" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
+          </div>
+          <select id="rate6" class="rate-input" onchange="productRateChange(this);calculate()">
+            <option value="5%">5%</option>
+            <option value="10%" selected>10%</option>
+            <option value="15%">15%</option>
+            <option value="9%">9%</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <button class="reset-btn" onclick="resetAll()"><span class="ico">↻</span> &nbsp; LÀM MỚI ĐƠN HÀNG</button>
+</main>
 </div>
 
-<div class="product-list">
-
-<div class="product-row main">
-  <div class="product-number">SP1</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SP CHÍNH</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp1" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate1" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="product-row">
-  <div class="product-number">SP2</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp2" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate2" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="product-row">
-  <div class="product-number">SP3</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp3" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate3" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="product-row">
-  <div class="product-number">SP4</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp4" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate4" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="product-row">
-  <div class="product-number">SP5</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp5" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate5" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-<div class="product-row">
-  <div class="product-number">SP6</div>
-  <div class="price-area">
-    <div class="price-label">GIÁ SẢN PHẨM PHỤ</div>
-    <div class="price-line">
-      <div class="input-wrapper" onclick="this.querySelector('input').focus()">
-        <button type="button" class="clear-btn" onclick="clearInput(event, this)">×</button><input id="sp6" class="price-input" type="text" inputmode="numeric" placeholder="" oninput="formatInput(this);calculate()"><span class="input-suffix">,000</span>
-      </div>
-      <select id="rate6" class="rate-input" onchange="productRateChange(this);calculate()">
-        <option value="5%">5%</option>
-        <option value="10%" selected>10%</option>
-        <option value="15%">15%</option>
-        <option value="9%">9%</option>
-      </select>
-    </div>
-  </div>
-</div>
-
-</div>
-<button class="reset-btn" onclick="resetAll()">↻ &nbsp; LÀM MỚI ĐƠN HÀNG</button>
-</main></div>
 <script>
 function getNumber(id){const e=document.getElementById(id);if(!e)return 0;return (Number(e.value.replace(/,/g,'').replace(/\s/g,''))||0) * 1000}
 function getRate(id){const e=document.getElementById(id);if(!e)return 0;let v=e.value.replace('%','').replace(',','.').replace(/[^\d.]/g,'');let r=parseFloat(v);if(isNaN(r))return 0;return Math.max(0,Math.min(r,99.99))/100}
@@ -331,6 +502,24 @@ function resetAll(){
   calculate();
 }
 calculate();
+</script>
+
+<script>
+/* UI only: hiệu ứng nảy số khi kết quả thay đổi (không ảnh hưởng công thức) */
+(function(){
+  ['nextPrice','customerPay','beforeTotal','afterTotal','budgetNumber'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el||!window.MutationObserver) return;
+    var last=el.textContent;
+    new MutationObserver(function(){
+      if(el.textContent===last) return;
+      last=el.textContent;
+      el.classList.remove('pop');
+      void el.offsetWidth;
+      el.classList.add('pop');
+    }).observe(el,{childList:true,characterData:true,subtree:true});
+  });
+})();
 </script>
 </body>
 </html>
